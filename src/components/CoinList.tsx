@@ -7,7 +7,7 @@ interface CoinListProps {
 
 const CoinList = (props: CoinListProps) => {
   return (
-    <For each={props.marketData} fallback={<div>Loading...</div>}>
+    <For each={props.marketData} fallback={<div>No results :(</div>}>
       {(coin) => <CoinLine {...coin} />}
     </For>
   );
