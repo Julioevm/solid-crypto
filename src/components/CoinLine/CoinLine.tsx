@@ -18,42 +18,44 @@ interface CoinLineProps {
 const CoinLine = (props: Coin) => {
   return (
     <div className={styles.coin_container}>
-      <div className="coin_info">
-        <div className={styles.coin_row}>
-          <div className={styles.coin}>
-            <img
-              src={props.image}
-              alt={props.name}
-              width="100%"
-              height="100%"
-              className={styles.coin_img}
-            />
-            <h1 className={styles.coin_h1}>{props.name}</h1>
-            <p className={styles.coin_symbol}>{props.symbol}</p>
-          </div>
-          <div className={styles.coin_data}>
-            <p className={styles.coin_price}>
-              {props.current_price.toLocaleString()}$
-            </p>
-            <p className={styles.coin_volume}>
-              {props.total_volume.toLocaleString()}$
-            </p>
-            {props.price_change_24h > 0 ? (
-              <span className={(styles.coin_percent, styles.red)}>
-                +{props.price_change_24h.toFixed(2)}%
-              </span>
-            ) : (
-              <span className={(styles.coin_percent, styles.green)}>
-                {props.price_change_24h.toFixed(2)}%
-              </span>
-            )}
+      <a>
+        <div className="coin_info">
+          <div className={styles.coin_row}>
+            <div className={styles.coin}>
+              <img
+                src={props.image}
+                alt={props.name}
+                width="100%"
+                height="100%"
+                className={styles.coin_img}
+              />
+              <h1 className={styles.coin_h1}>{props.name}</h1>
+              <p className={styles.coin_symbol}>{props.symbol}</p>
+            </div>
+            <div className={styles.coin_data}>
+              <p className={styles.coin_price}>
+                {props.current_price.toLocaleString()}$
+              </p>
+              <p className={styles.coin_volume}>
+                {props.total_volume.toLocaleString()}$
+              </p>
+              {props.price_change_24h > 0 ? (
+                <span className={(styles.coin_percent, styles.red)}>
+                  +{props.price_change_24h.toFixed(2)}%
+                </span>
+              ) : (
+                <span className={(styles.coin_percent, styles.green)}>
+                  {props.price_change_24h.toFixed(2)}%
+                </span>
+              )}
 
-            <p className={styles.coin_market_cap}>
-              Market cap: {props.market_cap.toLocaleString()}$
-            </p>
+              <p className={styles.coin_market_cap}>
+                Market cap: {props.market_cap.toLocaleString()}$
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   );
 };
