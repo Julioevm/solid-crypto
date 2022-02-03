@@ -1,16 +1,15 @@
 import { For } from "solid-js";
-import CoinLine, { Coin } from "./CoinLine";
+import CoinLine, { Coin } from "./CoinLine/CoinLine";
 
 interface CoinListProps {
   marketData: Coin[];
 }
 
 const CoinList = (props: CoinListProps) => {
-  console.log(props.marketData);
   
   return (
     <For each={props.marketData} fallback={<div>Loading...</div>}>
-      {(coin) => <CoinLine coin={coin} />}
+      {(coin) => <CoinLine {...coin} />}
     </For>
   );
 }
