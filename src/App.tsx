@@ -10,9 +10,7 @@ const marketUrl =
 const fetchData = async () => (await fetch(marketUrl)).json();
 
 const App: Component = () => {
-
   const [data] = createResource<Coin[]>(fetchData);
-
 
   return (
     <div class={styles.App}>

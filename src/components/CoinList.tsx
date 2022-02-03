@@ -6,12 +6,11 @@ interface CoinListProps {
 }
 
 const CoinList = (props: CoinListProps) => {
-  
   return (
     <For each={props.marketData} fallback={<div>Loading...</div>}>
       {(coin) => <CoinLine {...coin} />}
     </For>
   );
-}
+};
 
 export default CoinList;
