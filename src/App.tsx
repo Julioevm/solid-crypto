@@ -18,17 +18,12 @@ const fetchData = async () => (await fetch(marketUrl)).json();
 const App: Component = () => {
   const [data] = createResource<Coin[]>(fetchData);
   const [search, setSearch] = createSignal("");
-  const [filterData, setFilterData] = createSignal(data());
+  const filterData = () =>
+    data()?.filter((coin) => coin.name.toLowerCase().includes(search()));
 
   const handleChange = (e: any) => {
     setSearch(e.target.value.toLowerCase());
   };
-
-  createEffect(() => {
-    setFilterData(
-      data()?.filter((coin) => coin.name.toLowerCase().includes(search()))
-    );
-  });
 
   return (
     <div class={styles.App}>
