@@ -3,6 +3,7 @@ import {
   createEffect,
   createResource,
   createSignal,
+  Show,
 } from "solid-js";
 
 import styles from "./App.module.css";
@@ -31,7 +32,9 @@ const App: Component = () => {
         <h1>Solid Crypto</h1>
       </header>
       <SearchBar handleChange={handleChange} />
-      {data() ? <CoinList marketData={filterData()!} /> : <div>Loading...</div>}
+      <Show when={filterData()} fallback={<div>Loading...</div>}>
+        {(data) => <CoinList marketData={data} />}
+      </Show>
     </div>
   );
 };
