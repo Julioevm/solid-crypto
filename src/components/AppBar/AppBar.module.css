@@ -3,6 +3,7 @@
   height: 2em;
   background-color: #2d374c;
   width: 100%;
+  box-shadow: 0px 3px 4px 0px #20232a;
 }
 
 .log_in_button {
