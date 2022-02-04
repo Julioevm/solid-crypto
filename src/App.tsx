@@ -7,7 +7,7 @@ import {
 } from "solid-js";
 
 import styles from "./App.module.css";
-import CoinList from "./components/CoinList";
+import CoinList from "./components/CoinList/CoinList";
 import { Coin } from "./components/CoinLine/CoinLine";
 import { SearchBar } from "./components/SearchBar/SearchBar";
 
