@@ -10,6 +10,7 @@ import styles from "./App.module.css";
 import CoinList from "./components/CoinList/CoinList";
 import { Coin } from "./components/CoinLine/CoinLine";
 import { SearchBar } from "./components/SearchBar/SearchBar";
+import AppBar from "./components/AppBar/AppBar";
 
 const marketUrl =
   "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false";
@@ -21,13 +22,14 @@ const App: Component = () => {
   const [search, setSearch] = createSignal("");
   const filterData = () =>
     data()?.filter((coin) => coin.name.toLowerCase().includes(search()));
-
+  const user = { firstName: "John", lastName: "Doe" };
   const handleChange = (e: any) => {
     setSearch(e.target.value.toLowerCase());
   };
 
   return (
     <div class={styles.App}>
+      <AppBar user={user} />
       <header>
         <h1>Solid Crypto</h1>
       </header>
