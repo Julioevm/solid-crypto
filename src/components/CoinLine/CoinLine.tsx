@@ -1,3 +1,5 @@
+import { Link, useRoutes } from "solid-app-router";
+import { lazy } from "solid-js";
 import styles from "./CoinLine.module.css";
 export interface Coin {
   id: string;
@@ -14,8 +16,9 @@ export interface Coin {
 
 const CoinLine = (props: { coin: Coin }) => {
   const { coin } = props;
+
   return (
-    <a tabIndex={0} className={styles.coin_row}>
+    <Link href={`/coin/${coin.id}`} tabIndex={0} className={styles.coin_row}>
       <div className={styles.coin}>
         <img src={coin.image} alt={coin.name} className={styles.coin_img} />
         <p className={styles.coin_name}>{coin.name}</p>
@@ -40,9 +43,11 @@ const CoinLine = (props: { coin: Coin }) => {
           </p>
         )}
 
-        <p className={styles.mobile_hidden}>{coin.market_cap.toLocaleString()}$</p>
+        <p className={styles.mobile_hidden}>
+          {coin.market_cap.toLocaleString()}$
+        </p>
       </div>
-    </a>
+    </Link>
   );
 };
 

@@ -9,7 +9,7 @@
 .log_in_button {
   position: absolute;
   right: 1em;
-  color: #fff;
+  color: var(--light-font);
   font-size: 1.4em;
   font-weight: bold;
   cursor: pointer;
@@ -18,7 +18,7 @@
 .user_name {
   position: absolute;
   left: 1em;
-  color: #fff;
+  color: var(--light-font);
   font-size: 1.4em;
   font-weight: bold;
 }
