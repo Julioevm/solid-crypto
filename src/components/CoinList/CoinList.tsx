@@ -2,15 +2,11 @@ import { For } from "solid-js";
 import CoinLine, { Coin } from "../CoinLine/CoinLine";
 import styles from "./CoinList.module.css";
 
-interface CoinListProps {
-  marketData: Coin[];
-}
-
-const CoinList = (props: CoinListProps) => {
+const CoinList = (props: { marketData: Coin[] }) => {
   return (
     <div class={styles.coin_container}>
       <For each={props.marketData} fallback={<div>No results :(</div>}>
-        {(coin) => <CoinLine {...coin} />}
+        {(coin) => <CoinLine coin={coin} />}
       </For>
     </div>
   );
