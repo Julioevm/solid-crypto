@@ -12,9 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: pnpm/action-setup@v2.0.1
-      with:
-        version: 6.20.3
-      - run: pnpm ci && pnpm run build
+        with:
+          version: 6.20.3
+      - run: pnpm i && pnpm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
