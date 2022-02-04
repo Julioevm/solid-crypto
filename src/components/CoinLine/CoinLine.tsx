@@ -9,6 +9,7 @@ export interface Coin {
   total_volume: number;
   high_24h: number;
   price_change_24h: number;
+  price_change_percentage_24h: number;
 }
 
 interface CoinLineProps {
@@ -33,24 +34,24 @@ const CoinLine = (props: Coin) => {
               <p className={styles.coin_symbol}>{props.symbol}</p>
             </div>
             <div className={styles.coin_data}>
-              <p className={styles.coin_price}>
+              <p className={styles.coin_field}>
                 {props.current_price.toLocaleString()}$
               </p>
-              <p className={styles.coin_volume}>
+              <p className={styles.coin_field}>
                 {props.total_volume.toLocaleString()}$
               </p>
               {props.price_change_24h > 0 ? (
-                <span className={(styles.coin_percent, styles.red)}>
-                  +{props.price_change_24h.toFixed(2)}%
-                </span>
+                <p className={(styles.coin_field, styles.red)}>
+                  +{props.price_change_percentage_24h.toFixed(2)}%
+                </p>
               ) : (
-                <span className={(styles.coin_percent, styles.green)}>
-                  {props.price_change_24h.toFixed(2)}%
-                </span>
+                <p className={(styles.coin_field, styles.green)}>
+                  {props.price_change_percentage_24h.toFixed(2)}%
+                </p>
               )}
 
-              <p className={styles.coin_market_cap}>
-                Market cap: {props.market_cap.toLocaleString()}$
+              <p className={styles.coin_field}>
+                {props.market_cap.toLocaleString()}$
               </p>
             </div>
           </div>

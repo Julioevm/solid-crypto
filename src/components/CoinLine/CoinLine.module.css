@@ -1,6 +1,7 @@
 .coin_container {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .coin_row {
@@ -46,7 +47,10 @@
   width: 100%;
 }
 
-
+.coin_field {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 
 .red {
   color: red;
