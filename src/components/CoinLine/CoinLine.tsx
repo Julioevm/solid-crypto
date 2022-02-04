@@ -19,13 +19,15 @@ const CoinLine = (props: { coin: Coin }) => {
       <div className={styles.coin}>
         <img src={coin.image} alt={coin.name} className={styles.coin_img} />
         <p className={styles.coin_name}>{coin.name}</p>
-        <p className={styles.coin_symbol}>{coin.symbol}</p>
+        <p className={(styles.coin_symbol, styles.mobile_hidden)}>
+          {coin.symbol}
+        </p>
       </div>
       <div className={styles.coin_data}>
         <p className={styles.coin_field}>
           {coin.current_price.toLocaleString()}$
         </p>
-        <p className={styles.coin_field}>
+        <p className={styles.mobile_hidden}>
           {coin.total_volume.toLocaleString()}$
         </p>
         {coin.price_change_24h > 0 ? (
@@ -38,7 +40,7 @@ const CoinLine = (props: { coin: Coin }) => {
           </p>
         )}
 
-        <p className={styles.coin_field}>{coin.market_cap.toLocaleString()}$</p>
+        <p className={styles.mobile_hidden}>{coin.market_cap.toLocaleString()}$</p>
       </div>
     </a>
   );
