@@ -26,8 +26,8 @@ const Login = (props: { setState: Setter<State> }) => {
   };
 
   return (
-    <form>
-      <div class={styles.app_bar_container}>
+    <form class={styles.app_bar_login}>
+      <div>
         <input
           type="email"
           placeholder="email..."
@@ -40,6 +40,9 @@ const Login = (props: { setState: Setter<State> }) => {
         />
         <button type="button" onClick={handleSubmit}>
           Submit
+        </button>
+        <button type="button" onClick={() => props.setState("logout")}>
+          Cancel
         </button>
       </div>
     </form>

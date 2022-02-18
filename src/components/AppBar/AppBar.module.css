@@ -25,6 +25,16 @@
   margin-left: auto;
 }
 
+.app_bar_login {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 11rem;
+  height: 100%;
+  color: var(--light-font);
+  margin-left: auto;
+}
+
 .bar_title {
   color: var(--light-font);
   font-size: 1.4em;
