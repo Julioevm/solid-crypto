@@ -1,15 +1,14 @@
-import { Link, useNavigate } from "solid-app-router";
+import { Link } from "solid-app-router";
 import { createEffect, createSignal, Match, Switch } from "solid-js";
 import styles from "./AppBar.module.css";
 import Login from "./Login";
 
-type State = "logout" | "form" | "login";
+export type State = "logout" | "form" | "login";
 
 const AppBar = () => {
   const [state, setState] = createSignal<State>("logout");
   const [user, setUser] = createSignal<string>("Anonymous");
-  const navigate = useNavigate();
-  
+
   createEffect(() => {
     const authToken = sessionStorage.getItem("auth_token");
     if (authToken) {
@@ -20,7 +19,7 @@ const AppBar = () => {
 
   const logOut = () => {
     sessionStorage.removeItem("auth_token");
-    navigate("/");
+    setState("logout");
   };
 
   const LoggedOut = () => {
@@ -47,7 +46,7 @@ const AppBar = () => {
     <div class={styles.app_bar}>
       <Switch fallback={<LoggedOut />}>
         <Match when={state() === "form"}>
-          <Login />
+          <Login setState={setState} />
         </Match>
         <Match when={state() === "login"}>
           <LoggedIn />

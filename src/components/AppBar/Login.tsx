@@ -1,8 +1,9 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { createSignal } from "solid-js";
+import { createSignal, Setter } from "solid-js";
+import { State } from "./AppBar";
 import styles from "./AppBar.module.css";
 
-const Login = () => {
+const Login = (props: { setState: Setter<State> }) => {
   const [email, setEmail] = createSignal<string>("");
   const [password, setPassword] = createSignal<string>("");
 
@@ -20,6 +21,8 @@ const Login = () => {
       .catch((error) => {
         console.log(error);
       });
+
+    props.setState("login");
   };
 
   return (
