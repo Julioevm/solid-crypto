@@ -1,5 +1,5 @@
-import { Link } from "solid-app-router";
-import { createEffect, createSignal, Match, Switch } from "solid-js";
+import { Link, useMatch } from "solid-app-router";
+import { createEffect, createSignal, Match, Show, Switch } from "solid-js";
 import styles from "./AppBar.module.css";
 import Login from "./Login";
 
@@ -8,6 +8,7 @@ export type State = "logout" | "form" | "login";
 const AppBar = () => {
   const [state, setState] = createSignal<State>("logout");
   const [user, setUser] = createSignal<string>("Anonymous");
+  const match = useMatch(() => "");
 
   createEffect(() => {
     const authToken = sessionStorage.getItem("auth_token");
@@ -44,6 +45,16 @@ const AppBar = () => {
 
   return (
     <div class={styles.app_bar}>
+      {
+        <Show when={!match()}>
+          {
+            <Link href="/" class={styles.bar_title}>
+              Solid Crypto
+            </Link>
+          }
+        </Show>
+      }
+
       <Switch fallback={<LoggedOut />}>
         <Match when={state() === "form"}>
           <Login setState={setState} />
