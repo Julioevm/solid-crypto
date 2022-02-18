@@ -1,5 +1,4 @@
-import { Link, useRoutes } from "solid-app-router";
-import { lazy } from "solid-js";
+import { Link } from "solid-app-router";
 import styles from "./CoinLine.module.css";
 export interface Coin {
   id: string;

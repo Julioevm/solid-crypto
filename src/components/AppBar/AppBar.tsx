@@ -1,25 +1,58 @@
-import { Show } from "solid-js";
+import { Link, useNavigate } from "solid-app-router";
+import { createEffect, createSignal, Match, Switch } from "solid-js";
 import styles from "./AppBar.module.css";
+import Login from "./Login";
 
-interface User {
-  firstName: string;
-  lastName: string;
-}
+type State = "logout" | "form" | "login";
 
-const AppBar = (props: { user: User }) => {
+const AppBar = () => {
+  const [state, setState] = createSignal<State>("logout");
+  const [user, setUser] = createSignal<string>("Anonymous");
+  const navigate = useNavigate();
+  
+  createEffect(() => {
+    const authToken = sessionStorage.getItem("auth_token");
+    if (authToken) {
+      setState("login");
+      setUser(sessionStorage.getItem("name") || "Unknown");
+    }
+  });
+
+  const logOut = () => {
+    sessionStorage.removeItem("auth_token");
+    navigate("/");
+  };
+
+  const LoggedOut = () => {
+    return (
+      <div class={styles.app_bar_container}>
+        <a onClick={() => setState("form")}>Log-in</a>{" "}
+        <Link href="/register">Register</Link>
+      </div>
+    );
+  };
+
+  const LoggedIn = () => {
+    return (
+      <div class={styles.app_bar_container}>
+        <div>{user()}</div>
+        <a class={styles.log_in_button} onClick={logOut}>
+          Log-out
+        </a>
+      </div>
+    );
+  };
+
   return (
-    <div className={styles.app_bar}>
-      <Show
-        when={props.user}
-        fallback={<div className={styles.log_in_button}>Log-in</div>}
-      >
-        {(user) => (
-          <>
-            <div className={styles.user_name}>{user.firstName}</div>
-            <div className={styles.log_in_button}>Log-out</div>
-          </>
-        )}
-      </Show>
+    <div class={styles.app_bar}>
+      <Switch fallback={<LoggedOut />}>
+        <Match when={state() === "form"}>
+          <Login />
+        </Match>
+        <Match when={state() === "login"}>
+          <LoggedIn />
+        </Match>
+      </Switch>
     </div>
   );
 };
