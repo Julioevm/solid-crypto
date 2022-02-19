@@ -15,3 +15,6 @@ export const firebaseConfig = {
   appId: "1:514188354466:web:cbc727e7f4623291fc48fb",
   measurementId: "G-ZETFG854DQ",
 };
+
+export const app = initializeApp(firebaseConfig);
+export const analytics = getAnalytics(app);

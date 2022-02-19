@@ -1,5 +1,7 @@
+import { logEvent } from "firebase/analytics";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { createSignal, Setter } from "solid-js";
+import { analytics } from "../../Firebase/FirebaseConfig";
 import { State } from "./AppBar";
 import styles from "./AppBar.module.css";
 
@@ -21,6 +23,10 @@ const Login = (props: { setState: Setter<State> }) => {
       .catch((error) => {
         console.log(error);
       });
+      
+    logEvent(analytics, "login", {
+      email: email(),
+    });
 
     props.setState("login");
   };

@@ -3,14 +3,6 @@ import { Component, lazy } from "solid-js";
 import styles from "./App.module.css";
 import AppBar from "./components/AppBar/AppBar";
 import { useRoutes } from "solid-app-router";
-import { firebaseConfig } from "./Firebase/FirebaseConfig";
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// eslint-disable-next-line no-unused-vars
-const analytics = getAnalytics(app);
 
 const routes = [
   {

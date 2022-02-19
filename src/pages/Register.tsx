@@ -1,3 +1,4 @@
+import { logEvent } from "firebase/analytics";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -5,6 +6,7 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "solid-app-router";
 import { createSignal } from "solid-js";
+import { analytics } from "../Firebase/FirebaseConfig";
 
 const Register = () => {
   const [name, setName] = createSignal<string>("");
@@ -26,6 +28,10 @@ const Register = () => {
             "name",
             response.user.displayName || "undefined"
           );
+        });
+
+        logEvent(analytics, "sign_up", {
+          email: email(),
         });
 
         navigate("/");
