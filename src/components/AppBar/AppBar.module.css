@@ -10,7 +10,6 @@
 
 .log_in_button {
   cursor: pointer;
-  font-size: 1.2rem;
 }
 
 .app_bar_container {
@@ -20,7 +19,7 @@
   min-width: 11rem;
   height: 100%;
   color: var(--light-font);
-  font-size: 1.4em;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-left: auto;
 }

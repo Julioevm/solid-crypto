@@ -26,7 +26,9 @@ const AppBar = () => {
   const LoggedOut = () => {
     return (
       <div class={styles.app_bar_container}>
-        <a onClick={() => setState("form")}>Log-in</a>{" "}
+        <a class={styles.log_in_button} onClick={() => setState("form")}>
+          Log-in
+        </a>{" "}
         <Link href="/register">Register</Link>
       </div>
     );

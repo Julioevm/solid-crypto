@@ -7,6 +7,7 @@ import {
 import { useNavigate } from "solid-app-router";
 import { createSignal } from "solid-js";
 import { analytics } from "../Firebase/FirebaseConfig";
+import styles from "./Form.module.css";
 
 const Register = () => {
   const [name, setName] = createSignal<string>("");
@@ -48,29 +49,26 @@ const Register = () => {
       </header>
       <main>
         <h2>Register a new account</h2>
-        <form>
-          <div>
-            {/* //TODO: Style this better */}
-            <input
-              type="name"
-              placeholder="Name..."
-              onInput={(e: any) => setName(e.target.value)}
-            />
-            <input
-              type="email"
-              placeholder="Email..."
-              onInput={(e: any) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password..."
-              onInput={(e: any) => setPassword(e.target.value)}
-            />
-            <input type="password" placeholder="Confirm Password..." />
-            <button type="button" onClick={registerUser}>
-              Submit
-            </button>
-          </div>
+        <form class={styles.large_form}>
+          <input
+            type="name"
+            placeholder="Name..."
+            onInput={(e: any) => setName(e.target.value)}
+          />
+          <input
+            type="email"
+            placeholder="Email..."
+            onInput={(e: any) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password..."
+            onInput={(e: any) => setPassword(e.target.value)}
+          />
+          <input type="password" placeholder="Confirm Password..." />
+          <button type="button" onClick={registerUser}>
+            Submit
+          </button>
         </form>
       </main>
     </>

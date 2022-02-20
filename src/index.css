@@ -1,7 +1,8 @@
 :root {
   --highlight: #504f4f;
   --background-dark: #282c34;
-  --light-font: ;
+  --lighter-dark: #434a58;
+  --light-font: white;
 }
 
 body {

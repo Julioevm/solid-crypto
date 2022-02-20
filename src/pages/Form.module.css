@@ -1,0 +1,27 @@
+button {
+    border: none;
+    background-color: var(--lighter-dark);
+    cursor: pointer;
+    color: var(--light-font);
+    border-radius: 5px;
+    box-shadow: 0px 3px 4px 0px #20232a;
+    margin: 0.5rem;
+    padding: 0.25rem;
+  }
+  
+  .large_form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .large_form input {
+    margin: 0.5rem;
+    padding: 0.25rem;
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 2px 2px 4px 2px #20232a;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--light-font);
+    background-color: var(--lighter-dark);
+  }
