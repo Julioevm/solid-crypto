@@ -14,7 +14,7 @@ const AppBar = () => {
     const authToken = sessionStorage.getItem("auth_token");
     if (authToken) {
       setState("login");
-      setUser(sessionStorage.getItem("name") || "Unknown");
+      setUser(sessionStorage.getItem("name") ?? "Anonymous");
     }
   });
 

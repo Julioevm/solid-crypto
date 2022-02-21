@@ -14,9 +14,9 @@ const Register = () => {
   const [email, setEmail] = createSignal<string>("");
   const [password, setPassword] = createSignal<string>("");
 
-  const navigate = useNavigate();
   const registerUser = () => {
     const authentication = getAuth();
+    const navigate = useNavigate();
 
     createUserWithEmailAndPassword(authentication, email(), password())
       .then((response) => {
