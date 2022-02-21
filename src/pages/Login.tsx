@@ -1,21 +1,16 @@
-import { logEvent } from "firebase/analytics";
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  updateProfile,
-} from "firebase/auth";
 import { useNavigate } from "solid-app-router";
 import { createSignal } from "solid-js";
-import { analytics } from "../Firebase/FirebaseConfig";
+import { useLogin } from "../hooks/useLogin";
 import styles from "./Form.module.css";
 
 const Login = () => {
-  const [name, setName] = createSignal<string>("");
   const [email, setEmail] = createSignal<string>("");
   const [password, setPassword] = createSignal<string>("");
 
   const navigate = useNavigate();
-  const logIn = () => {};
+  const handleSubmit = () => {
+    useLogin(email(), password()) && navigate("/");
+  };
   return (
     <>
       <header>
@@ -33,7 +28,7 @@ const Login = () => {
             placeholder="Password..."
             onInput={(e: any) => setPassword(e.target.value)}
           />
-          <button type="button" onClick={logIn}>
+          <button type="button" onClick={handleSubmit}>
             Submit
           </button>
         </form>

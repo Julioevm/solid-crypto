@@ -1,7 +1,5 @@
-import { logEvent } from "firebase/analytics";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { createSignal, Setter } from "solid-js";
-import { analytics } from "../../Firebase/FirebaseConfig";
+import { useLogin } from "../../hooks/useLogin";
 import { State } from "./AppBar";
 import styles from "./AppBar.module.css";
 
@@ -10,25 +8,7 @@ const LoginForm = (props: { setState: Setter<State> }) => {
   const [password, setPassword] = createSignal<string>("");
 
   const handleSubmit = () => {
-    const authentication = getAuth();
-    signInWithEmailAndPassword(authentication, email(), password())
-      .then((response) => {
-        sessionStorage.setItem("auth_token", response.user.refreshToken);
-        sessionStorage.setItem("email", response.user.email || "undefined");
-        sessionStorage.setItem(
-          "name",
-          response.user.displayName || "undefined"
-        );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-      
-    logEvent(analytics, "login", {
-      email: email(),
-    });
-
-    props.setState("login");
+    useLogin(email(), password()) && props.setState("login");
   };
 
   return (
