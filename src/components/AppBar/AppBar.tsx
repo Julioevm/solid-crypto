@@ -1,7 +1,7 @@
 import { Link, useMatch } from "solid-app-router";
 import { createEffect, createSignal, Match, Show, Switch } from "solid-js";
 import styles from "./AppBar.module.css";
-import Login from "./Login";
+import LoginForm from "./LoginForm";
 
 export type State = "logout" | "form" | "login";
 
@@ -26,9 +26,15 @@ const AppBar = () => {
   const LoggedOut = () => {
     return (
       <div class={styles.app_bar_container}>
-        <a class={styles.log_in_button} onClick={() => setState("form")}>
+        <a
+          class={(styles.pointer, styles.login_button)}
+          onClick={() => setState("form")}
+        >
           Log-in
         </a>{" "}
+        <Link class={styles.login_link} href="/login">
+          Log-in
+        </Link>
         <Link href="/register">Register</Link>
       </div>
     );
@@ -38,7 +44,7 @@ const AppBar = () => {
     return (
       <div class={styles.app_bar_container}>
         <div>{user()}</div>
-        <a class={styles.log_in_button} onClick={logOut}>
+        <a class={styles.pointer} onClick={logOut}>
           Log-out
         </a>
       </div>
@@ -59,7 +65,7 @@ const AppBar = () => {
 
       <Switch fallback={<LoggedOut />}>
         <Match when={state() === "form"}>
-          <Login setState={setState} />
+          <LoginForm setState={setState} />
         </Match>
         <Match when={state() === "login"}>
           <LoggedIn />

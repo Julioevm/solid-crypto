@@ -45,10 +45,9 @@ const Register = () => {
   return (
     <>
       <header>
-        <h1>Solid Crypto</h1>
+        <h1>Register a new account</h1>
       </header>
       <main>
-        <h2>Register a new account</h2>
         <form class={styles.large_form}>
           <input
             type="name"

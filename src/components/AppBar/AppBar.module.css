@@ -2,13 +2,14 @@
   display: flex;
   padding-right: 2rem;
   position: fixed;
-  height: 2em;
+  align-items: center;
   background-color: #2d374c;
   width: 100%;
   box-shadow: 0px 3px 4px 0px #20232a;
+  height: 3rem;
 }
 
-.log_in_button {
+.pointer {
   cursor: pointer;
 }
 
@@ -16,7 +17,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-width: 11rem;
+  min-width: 9rem;
   height: 100%;
   color: var(--light-font);
   font-size: 1.2rem;
@@ -39,4 +40,23 @@
   font-size: 1.4em;
   font-weight: bold;
   margin-left: 2rem;
+}
+
+.login_button {
+  display: none;
+}
+.login_link {
+  display: block;
+}
+
+@media (min-width: 767.98px) {
+  .app_bar {
+    height: 2rem;
+  }
+  .login_link {
+    display: none;
+  }
+  .login_button {
+    display: block;
+  }
 }
