@@ -1,9 +1,14 @@
 import { useParams } from "solid-app-router";
 import { createResource, Show } from "solid-js";
-import styles from "./Coin.module.css";
+import "./styles.css";
 
+interface Currency {
+  usd: number;
+}
 interface MarketData {
-  current_price: { usd: number };
+  current_price: Currency;
+  market_cap: Currency;
+  price_change_percentage_24h: number;
 }
 interface CoinDetail {
   id: string;
@@ -19,23 +24,35 @@ const fetchData = async (id: string) =>
 const Coin = () => {
   const params = useParams();
   const [coin] = createResource<CoinDetail>(() => fetchData(params.id));
+  const price_change = (coin: CoinDetail) =>
+    coin.market_data.price_change_percentage_24h ?? 0;
 
   return (
     <Show when={coin()} fallback="Loading...">
-      <div class={styles.coin_container}>
-        <div class={styles.coin_header}>
-          <img
-            src={coin().image.small}
-            alt={coin().name}
-            class={styles.coin_image}
-          />
-          <h1 class={styles.coin_name}>{coin().name}</h1>
-          <p>{coin().symbol}</p>
+      {(coin) => (
+        <div class="coin_container">
+          <div class={"coin_header"}>
+            <img src={coin.image.small} alt={coin.name} class={"coin_image"} />
+            <h1 class={"coin_name"}>{coin.name}</h1>
+            <p class={"coin_ticker"}>({coin.symbol})</p>
+          </div>
+          <div>
+            <div class={"coin_current"}>
+              {coin.market_data.current_price.usd.toLocaleString()}$
+            </div>
+            <div
+              classList={{
+                green: price_change(coin) > 0,
+                red: price_change(coin) < 0,
+              }}
+            >
+              {price_change(coin).toFixed(2)}%
+            </div>
+          </div>
+          <p>Market Cap</p>
+          <p>{coin.market_data.market_cap.usd.toLocaleString()}$</p>
         </div>
-        <p class={styles.coin_current}>
-          {coin().market_data.current_price.usd.toLocaleString()}$
-        </p>
-      </div>
+      )}
     </Show>
   );
 };
