@@ -6,40 +6,50 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "solid-app-router";
 import { createSignal } from "solid-js";
+import { setAuthToken } from "../App";
 import { analytics } from "../Firebase/FirebaseConfig";
 import styles from "./Form.module.css";
+
+const registerUser = (
+  name: string,
+  email: string,
+  password: string
+): boolean => {
+  const authentication = getAuth();
+
+  createUserWithEmailAndPassword(authentication, email, password)
+    .then((response) => {
+      setAuthToken(response.user.refreshToken);
+      sessionStorage.setItem("email", response.user.email || "undefined");
+      updateProfile(response.user, {
+        displayName: name,
+      }).then(() => {
+        sessionStorage.setItem(
+          "name",
+          response.user.displayName || "undefined"
+        );
+      });
+
+      logEvent(analytics, "sign_up", {
+        email: email,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      return false;
+    });
+
+  return true;
+};
 
 const Register = () => {
   const [name, setName] = createSignal<string>("");
   const [email, setEmail] = createSignal<string>("");
   const [password, setPassword] = createSignal<string>("");
+  const navigate = useNavigate();
 
-  const registerUser = () => {
-    const authentication = getAuth();
-    const navigate = useNavigate();
-
-    createUserWithEmailAndPassword(authentication, email(), password())
-      .then((response) => {
-        sessionStorage.setItem("auth_token", response.user.refreshToken);
-        sessionStorage.setItem("email", response.user.email || "undefined");
-        updateProfile(response.user, {
-          displayName: name(),
-        }).then(() => {
-          sessionStorage.setItem(
-            "name",
-            response.user.displayName || "undefined"
-          );
-        });
-
-        logEvent(analytics, "sign_up", {
-          email: email(),
-        });
-
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handleSubmit = () => {
+    registerUser(name(), email(), password()) && navigate("/");
   };
 
   return (
@@ -65,7 +75,7 @@ const Register = () => {
             onInput={(e: any) => setPassword(e.target.value)}
           />
           <input type="password" placeholder="Confirm Password..." />
-          <button type="button" onClick={registerUser}>
+          <button type="button" onClick={handleSubmit}>
             Submit
           </button>
         </form>
