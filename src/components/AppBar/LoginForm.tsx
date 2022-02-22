@@ -8,7 +8,7 @@ const LoginForm = (props: { setState: Setter<State> }) => {
   const [password, setPassword] = createSignal<string>("");
 
   const handleSubmit = () => {
-    useLogin(email(), password()) && props.setState("login");
+    useLogin(email(), password());
   };
 
   return (

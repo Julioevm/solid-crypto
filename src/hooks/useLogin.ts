@@ -1,6 +1,7 @@
 import { logEvent } from "firebase/analytics";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { createSignal } from "solid-js";
+import { setAuthToken } from "../App";
 import { analytics } from "../Firebase/FirebaseConfig";
 
 export const useLogin = (email: string, password: string): boolean => {
@@ -8,7 +9,7 @@ export const useLogin = (email: string, password: string): boolean => {
   const authentication = getAuth();
   signInWithEmailAndPassword(authentication, email, password)
     .then((response) => {
-      sessionStorage.setItem("auth_token", response.user.refreshToken);
+      setAuthToken(response.user.refreshToken);
       sessionStorage.setItem("email", response.user.email || "undefined");
       sessionStorage.setItem("name", response.user.displayName || "undefined");
     })

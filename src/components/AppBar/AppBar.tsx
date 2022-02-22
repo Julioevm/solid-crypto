@@ -1,5 +1,6 @@
 import { Link, useMatch } from "solid-app-router";
-import { createEffect, createSignal, Match, Show, Switch } from "solid-js";
+import { createEffect, createSignal, Match, on, Show, Switch } from "solid-js";
+import { authToken } from "../../App";
 import styles from "./AppBar.module.css";
 import LoginForm from "./LoginForm";
 
@@ -10,13 +11,14 @@ const AppBar = () => {
   const [user, setUser] = createSignal<string>("Anonymous");
   const match = useMatch(() => "");
 
-  createEffect(() => {
-    const authToken = sessionStorage.getItem("auth_token");
-    if (authToken) {
-      setState("login");
-      setUser(sessionStorage.getItem("name") ?? "Anonymous");
-    }
-  });
+  createEffect(
+    on(authToken, () => {
+      if (authToken()) {
+        setState("login");
+        setUser(sessionStorage.getItem("name") ?? "Anonymous");
+      }
+    })
+  );
 
   const logOut = () => {
     sessionStorage.removeItem("auth_token");

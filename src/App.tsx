@@ -3,6 +3,14 @@ import { Component, lazy } from "solid-js";
 import styles from "./App.module.css";
 import AppBar from "./components/AppBar/AppBar";
 import { useRoutes } from "solid-app-router";
+import { createStorageSignal } from "@solid-primitives/storage";
+
+export const [authToken, setAuthToken] = createStorageSignal<
+  string | null,
+  undefined
+>("auth_token", null, {
+  api: sessionStorage,
+});
 
 const routes = [
   {
