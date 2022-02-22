@@ -1,11 +1,10 @@
 import { logEvent } from "firebase/analytics";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { createSignal } from "solid-js";
 import { setAuthToken } from "../App";
 import { analytics } from "../Firebase/FirebaseConfig";
 
 export const useLogin = (email: string, password: string): boolean => {
-  const [isLoginSuccessful, setIsLoginSuccessful] = createSignal(false);
+  let isLoginSuccessful = false;
   const authentication = getAuth();
   signInWithEmailAndPassword(authentication, email, password)
     .then((response) => {
@@ -17,10 +16,10 @@ export const useLogin = (email: string, password: string): boolean => {
       console.log(error);
     });
 
-  setIsLoginSuccessful(true);
+  isLoginSuccessful = true;
   logEvent(analytics, "login", {
     email: email,
   });
 
-  return isLoginSuccessful();
+  return isLoginSuccessful;
 };
