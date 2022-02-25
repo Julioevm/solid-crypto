@@ -1,18 +1,18 @@
 import { createSignal, Setter } from "solid-js";
-import { useLogin } from "../../hooks/useLogin";
+import { createLogin } from "../../primitives/createLogin";
 import { State } from "./AppBar";
-import styles from "./AppBar.module.css";
+import "./styles.css";
 
 const LoginForm = (props: { setState: Setter<State> }) => {
   const [email, setEmail] = createSignal<string>("");
   const [password, setPassword] = createSignal<string>("");
 
   const handleSubmit = () => {
-    useLogin(email(), password());
+    createLogin(email(), password());
   };
 
   return (
-    <form class={styles.app_bar_login}>
+    <form class="app_bar_login">
       <div>
         <input
           type="email"

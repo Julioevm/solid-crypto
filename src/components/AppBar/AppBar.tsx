@@ -1,7 +1,7 @@
 import { Link, useMatch } from "solid-app-router";
 import { createEffect, createSignal, Match, on, Show, Switch } from "solid-js";
 import { authToken } from "../../App";
-import styles from "./AppBar.module.css";
+import "./styles.css";
 import LoginForm from "./LoginForm";
 
 export type State = "logout" | "form" | "login";
@@ -27,14 +27,11 @@ const AppBar = () => {
 
   const LoggedOut = () => {
     return (
-      <div class={styles.app_bar_container}>
-        <a
-          class={(styles.pointer, styles.login_button)}
-          onClick={() => setState("form")}
-        >
+      <div class="app_bar_container">
+        <a class="pointer login_button" onClick={() => setState("form")}>
           Log-in
         </a>{" "}
-        <Link class={styles.login_link} href="/login">
+        <Link class="login_link" href="/login">
           Log-in
         </Link>
         <Link href="/register">Register</Link>
@@ -44,9 +41,9 @@ const AppBar = () => {
 
   const LoggedIn = () => {
     return (
-      <div class={styles.app_bar_container}>
+      <div class="app_bar_container">
         <div>{user()}</div>
-        <a class={styles.pointer} onClick={logOut}>
+        <a class="pointer" onClick={logOut}>
           Log-out
         </a>
       </div>
@@ -54,11 +51,11 @@ const AppBar = () => {
   };
 
   return (
-    <div class={styles.app_bar}>
+    <div class="app_bar">
       {
         <Show when={!match()}>
           {
-            <Link href="/" class={styles.bar_title}>
+            <Link href="/" class="bar_title">
               Solid Crypto
             </Link>
           }

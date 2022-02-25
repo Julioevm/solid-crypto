@@ -8,16 +8,20 @@
     "build": "vite build",
     "serve": "vite preview",
     "lint": "eslint **/*.tsx **/*.tsx ",
-    "lint:fix": "eslint **/*.tsx **/*.tsx --fix"
+    "lint:fix": "eslint **/*.tsx **/*.tsx --fix",
+    "test": "vitest"
   },
   "license": "MIT",
   "devDependencies": {
     "@typescript-eslint/parser": "^5.12.0",
     "eslint": "^8.9.0",
     "eslint-plugin-solid": "^0.4.4",
+    "jsdom": "^19.0.0",
+    "solid-testing-library": "^0.2.1",
     "typescript": "^4.5.5",
     "vite": "^2.7.13",
-    "vite-plugin-solid": "^2.2.5"
+    "vite-plugin-solid": "^2.2.5",
+    "vitest": "^0.5.5"
   },
   "dependencies": {
     "@solid-primitives/storage": "^1.1.1",

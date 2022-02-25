@@ -1,6 +1,6 @@
 import { useNavigate } from "solid-app-router";
 import { createSignal } from "solid-js";
-import { useLogin } from "../hooks/useLogin";
+import { createLogin } from "../primitives/createLogin";
 import styles from "./Form.module.css";
 
 const Login = () => {
@@ -9,7 +9,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const handleSubmit = () => {
-    useLogin(email(), password()) && navigate("/");
+    createLogin(email(), password()) && navigate("/");
   };
   return (
     <>
