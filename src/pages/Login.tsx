@@ -8,8 +8,8 @@ const Login = () => {
   const [password, setPassword] = createSignal<string>("");
 
   const navigate = useNavigate();
-  const handleSubmit = () => {
-    createLogin(email(), password()) && navigate("/");
+  const handleSubmit = async () => {
+    await createLogin(email(), password()) && navigate("/");
   };
   return (
     <>

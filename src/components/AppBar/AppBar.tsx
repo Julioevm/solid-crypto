@@ -22,6 +22,8 @@ const AppBar = () => {
 
   const logOut = () => {
     sessionStorage.removeItem("auth_token");
+    sessionStorage.removeItem("name");
+    sessionStorage.removeItem("email");
     setState("logout");
   };
 

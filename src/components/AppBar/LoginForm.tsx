@@ -7,8 +7,8 @@ const LoginForm = (props: { setState: Setter<State> }) => {
   const [email, setEmail] = createSignal<string>("");
   const [password, setPassword] = createSignal<string>("");
 
-  const handleSubmit = () => {
-    createLogin(email(), password());
+  const handleSubmit = async () => {
+    await createLogin(email(), password());
   };
 
   return (
