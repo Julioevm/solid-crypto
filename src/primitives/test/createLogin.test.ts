@@ -35,14 +35,18 @@ describe("createLogin()", () => {
   });
 
   it("returns true for a valid login", () => {
-    signInWithEmailAndPassword.mockResolvedValue(userCredential as any);
-    expect(createLogin(email, validPassword)).toBe(true);
+    signInWithEmailAndPassword.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve(userCredential)
+    );
+    expect(createLogin(email, validPassword)).resolves.toBe(true);
+    expect(signInWithEmailAndPassword).toHaveBeenCalledOnce();
   });
 
   it("returns false for an invalid login", () => {
     signInWithEmailAndPassword.mockRejectedValueOnce(() => {
       throw new Error("Invalid Password");
     });
-    expect(createLogin(email, invalidPassword)).toBe(false);
+    expect(createLogin(email, invalidPassword)).resolves.toBe(false);
+    expect(signInWithEmailAndPassword).toHaveBeenCalledOnce();
   });
 });
