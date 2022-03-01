@@ -1,6 +1,8 @@
 /// <reference types="vitest" />
+/// <reference types="vite/client" />
+
 import { defineConfig } from "vite";
-import solidPlugin from "vite-plugin-solid";
+import solid from "vite-plugin-solid";
 
 export default defineConfig({
   test: {
@@ -12,9 +14,8 @@ export default defineConfig({
       inline: [/solid-js/],
     },
   },
-  plugins: [solidPlugin()],
-  build: {
-    target: "esnext",
-    polyfillDynamicImport: false,
+  plugins: [solid()],
+  resolve: {
+    conditions: ["development", "browser"],
   },
 });

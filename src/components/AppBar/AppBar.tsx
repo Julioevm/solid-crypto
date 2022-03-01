@@ -33,10 +33,10 @@ const AppBar = () => {
         <a class="pointer login_button" onClick={() => setState("form")}>
           Log-in
         </a>{" "}
-        <Link class="login_link" href="/login">
+        <Link class="login_link" href="/login" data-testid="login-button">
           Log-in
         </Link>
-        <Link href="/register">Register</Link>
+        <Link href="/register" data-testid="register-button">Register</Link>
       </div>
     );
   };
