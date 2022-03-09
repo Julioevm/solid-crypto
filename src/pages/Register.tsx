@@ -58,7 +58,7 @@ const Register = () => {
         <h1>Register a new account</h1>
       </header>
       <main>
-        <form class={styles.large_form}>
+        <form class={styles.large_form} data-testid="register-form">
           <input
             type="name"
             placeholder="Name..."

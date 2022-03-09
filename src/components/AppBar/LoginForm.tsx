@@ -18,16 +18,26 @@ const LoginForm = (props: { setState: Setter<State> }) => {
           type="email"
           placeholder="email..."
           onInput={(e: any) => setEmail(e.target.value)}
+          data-testid="email-input"
         />
         <input
           type="password"
           placeholder="password..."
           onInput={(e: any) => setPassword(e.target.value)}
+          data-testid="password-input"
         />
-        <button type="button" onClick={handleSubmit}>
+        <button
+          type="button"
+          onClick={handleSubmit}
+          data-testid="submit-button"
+        >
           Submit
         </button>
-        <button type="button" onClick={() => props.setState("logout")}>
+        <button
+          type="button"
+          onClick={() => props.setState("logout")}
+          data-testid="cancel-button"
+        >
           Cancel
         </button>
       </div>

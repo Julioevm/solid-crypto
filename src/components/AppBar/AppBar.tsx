@@ -30,13 +30,23 @@ const AppBar = () => {
   const LoggedOut = () => {
     return (
       <div class="app_bar_container">
-        <a class="pointer login_button" onClick={() => setState("form")}>
+        <a
+          class="pointer login_button"
+          onClick={() => setState("form")}
+          data-testid="desktop-login-button"
+        >
           Log-in
         </a>{" "}
-        <Link class="login_link" href="/login" data-testid="login-button">
+        <Link
+          class="login_link"
+          href="/login"
+          data-testid="mobile-login-button"
+        >
           Log-in
         </Link>
-        <Link href="/register" data-testid="register-button">Register</Link>
+        <Link href="/register" data-testid="register-button">
+          Register
+        </Link>
       </div>
     );
   };
