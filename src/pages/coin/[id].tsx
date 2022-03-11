@@ -1,5 +1,6 @@
 import { useParams } from "solid-app-router";
 import { createResource, Show } from "solid-js";
+import Chart from "./Chart";
 import "./styles.css";
 
 interface Currency {
@@ -32,25 +33,36 @@ const Coin = () => {
       {(coin) => (
         <div class="coin_container">
           <div class={"coin_header"}>
-            <img src={coin.image.small} alt={coin.name} class={"coin_image"} />
-            <h1 class={"coin_name"}>{coin.name}</h1>
-            <p class={"coin_ticker"}>({coin.symbol})</p>
+            <div className="coin_main_info">
+              <img
+                src={coin.image.small}
+                alt={coin.name}
+                class={"coin_image"}
+              />
+              <h1 class={"coin_name"}>{coin.name}</h1>
+              <p class={"coin_ticker"}>({coin.symbol})</p>
+            </div>
+
+            <div class="coin_value">
+              <div class={"coin_current"}>
+                {coin.market_data.current_price.usd.toLocaleString()}$
+              </div>
+              <div
+                classList={{
+                  green: price_change(coin) > 0,
+                  red: price_change(coin) < 0,
+                }}
+              >
+                {price_change(coin).toFixed(2)}%
+              </div>
+            </div>
           </div>
+
           <div>
-            <div class={"coin_current"}>
-              {coin.market_data.current_price.usd.toLocaleString()}$
-            </div>
-            <div
-              classList={{
-                green: price_change(coin) > 0,
-                red: price_change(coin) < 0,
-              }}
-            >
-              {price_change(coin).toFixed(2)}%
-            </div>
+            <span>Market Cap</span>{" "}
+            <span>{coin.market_data.market_cap.usd.toLocaleString()}$</span>
           </div>
-          <p>Market Cap</p>
-          <p>{coin.market_data.market_cap.usd.toLocaleString()}$</p>
+          <Chart />
         </div>
       )}
     </Show>

@@ -2,13 +2,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4rem;
+  margin-top: 4rem;
 }
 
 .coin_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+.coin_main_info {
+  display: flex;
+  justify-content: space-evenly;
+  flex: 2;
+}
+
+.coin_value {
+  flex: 1;
 }
 
 .coin_image {
