@@ -11,8 +11,10 @@ const fetchData = async () => (await fetch(marketUrl)).json();
 const Home = () => {
   const [data] = createResource<Coin[]>(fetchData);
   const [search, setSearch] = createSignal("");
+
   const filterData = () =>
     data()?.filter((coin) => coin.name.toLowerCase().includes(search()));
+
 
   const handleChange = (e: any) => {
     setSearch(e.target.value.toLowerCase());
