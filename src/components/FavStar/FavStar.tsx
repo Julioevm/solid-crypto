@@ -31,8 +31,6 @@ export const FavStar = (props: { id: string }) => {
         setFavList(JSON.stringify([props.id]));
       }
     }
-
-    // setIsFav(!isFav());
   };
 
   return (
@@ -40,11 +38,13 @@ export const FavStar = (props: { id: string }) => {
       for={`fav-${props.id}`}
       class={`custom-checkbox ${isFav() ? "fav-star-full" : "fav-star-empty"}`}
       onClick={(e) => handleFav(e)}
+      data-testid="fav-label"
     >
       <input
         id={`fav-${props.id}`}
         type="checkbox"
         name={isFav() ? "Remove from favorites" : "Add to favorites"}
+        data-testid="fav-input"
       />
 
       <span>★</span>
