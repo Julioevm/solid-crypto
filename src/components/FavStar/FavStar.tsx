@@ -1,30 +1,38 @@
-import { createEffect, createSignal } from "solid-js";
+import { createEffect, createSignal, on } from "solid-js";
+import { favList, setFavList } from "../../App";
 import "./styles.css";
 
 export const FavStar = (props: { id: string }) => {
   const [isFav, setIsFav] = createSignal(false);
-  const [favList, setFavList] = createSignal<string[]>([]);
 
-  createEffect(() => {
-    const favList = localStorage.getItem("favList");
-    if (favList) {
-      setFavList(JSON.parse(favList));
-    }
-  }, []);
-
-  createEffect(() => {
-    localStorage.setItem("favList", JSON.stringify(favList()));
-  }, [favList()]);
+  createEffect(
+    on(favList, () => {
+      if (favList() && favList()!.includes(props.id)) {
+        setIsFav(true);
+      } else {
+        setIsFav(false);
+      }
+    })
+  );
 
   const handleFav = (e: MouseEvent) => {
     e.preventDefault();
 
     if (isFav()) {
-      setFavList(favList().filter((id) => id !== props.id));
+      setFavList(
+        JSON.stringify(
+          JSON.parse(favList()!).filter((id: string) => id !== props.id)
+        )
+      );
     } else {
-      setFavList([...favList(), props.id]);
+      if (favList()) {
+        setFavList(JSON.stringify([...JSON.parse(favList()!), props.id]));
+      } else {
+        setFavList(JSON.stringify([props.id]));
+      }
     }
-    setIsFav(!isFav());
+
+    // setIsFav(!isFav());
   };
 
   return (
