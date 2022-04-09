@@ -46,7 +46,7 @@
     width: 12px;
     left: 2px;
     bottom: 2px;
-    background-color: white;
+    background-color: var(--dark-accent);
     -webkit-transition: .4s;
     transition: .4s;
 }
