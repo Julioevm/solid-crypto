@@ -1,0 +1,31 @@
+label {
+  font-size: 1.5rem;
+  margin: 0 1rem;
+}
+
+label input[type="checkbox"] {
+  display: none;
+}
+
+.custom-checkbox {
+  position: relative;
+  cursor: pointer;
+}
+
+.fav-star-empty {
+  opacity: 0.5;
+  color: gray;
+}
+
+.fav-star-empty:hover {
+  opacity: 0.5;
+  color: gold;
+}
+
+.fav-star-full {
+  color: gold;
+}
+
+.fav-star-full:hover {
+  opacity: 0.9;
+}

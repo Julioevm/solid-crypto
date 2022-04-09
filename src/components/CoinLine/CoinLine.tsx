@@ -1,5 +1,6 @@
 import { Link } from "solid-app-router";
 import { Show } from "solid-js";
+import { FavStar } from "../FavStar/FavStar";
 import styles from "./CoinLine.module.css";
 export interface Coin {
   id: string;
@@ -56,6 +57,7 @@ const CoinLine = (props: { coin: Coin }) => {
           {props.coin.market_cap.toLocaleString()}$
         </p>
       </div>
+      <FavStar id={props.coin.id} />
     </Link>
   );
 };

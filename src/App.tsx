@@ -12,6 +12,13 @@ export const [authToken, setAuthToken] = createStorageSignal<
   api: sessionStorage,
 });
 
+export const [favList, setFavList] = createStorageSignal<
+  string | null,
+  undefined
+>("favList", null, {
+  api: localStorage,
+});
+
 const routes = [
   {
     path: "/coin/:id",
@@ -19,7 +26,7 @@ const routes = [
   },
   {
     path: "/",
-    component: lazy(() => import("./pages/Home")),
+    component: lazy(() => import("./pages/Home/Home")),
   },
   {
     path: "/register",

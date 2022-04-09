@@ -4,6 +4,7 @@
   --lighter-dark: #434a58;
   --light-font: white;
   --font-disabled: #b6b6b6;
+  --dark-accent:#2d374c;
 }
 
 body {
@@ -13,6 +14,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
 }
 
 code {

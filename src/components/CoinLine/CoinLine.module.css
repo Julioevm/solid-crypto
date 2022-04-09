@@ -3,7 +3,7 @@
   align-items: center;
   height: 80px;
   border-bottom: 1px solid var(--highlight);
-  padding: 0rem 2rem;
+  padding-left: 1rem;
 }
 
 .coin_row:hover {
@@ -51,6 +51,9 @@
     display: none;
   }
 
+  .coin {
+    width: 8rem;
+  }
   .coin_data {
     display: flex;
     text-align: right;
