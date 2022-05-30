@@ -42,10 +42,10 @@ const App: Component = () => {
   const Routes = useRoutes(routes);
 
   return (
-    <div class={styles.App}>
+    <main class={styles.App}>
       <AppBar />
       <Routes />
-    </div>
+    </main>
   );
 };
 

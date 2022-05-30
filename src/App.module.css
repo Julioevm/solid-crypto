@@ -1,11 +1,11 @@
 .App {
   text-align: center;
-  background-color: var(--background-dark);
+  background-color: var(--color-background);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--light-font);
+  color: var(--color-text);
 }
 
 h1 {

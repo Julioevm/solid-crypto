@@ -14,16 +14,16 @@ label input[type="checkbox"] {
 
 .fav-star-empty {
   opacity: 0.5;
-  color: gray;
+  color: var(--color-gray);
 }
 
 .fav-star-empty:hover {
   opacity: 0.5;
-  color: gold;
+  color: var(--color-gold);
 }
 
 .fav-star-full {
-  color: gold;
+  color: var(--color-gold);
 }
 
 .fav-star-full:hover {
