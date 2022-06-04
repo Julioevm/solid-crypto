@@ -13,9 +13,6 @@ const Chart = (props: { data: Timeline }) => {
       height: 350,
       with: 600,
       type: "line",
-      zoom: {
-        enabled: false,
-      },
     },
     dataLabels: {
       enabled: false,
@@ -24,7 +21,7 @@ const Chart = (props: { data: Timeline }) => {
       curve: "straight",
     },
     title: {
-      text: "Coin price",
+      text: "Coin Price Timeline",
       align: "left",
     },
     grid: {
