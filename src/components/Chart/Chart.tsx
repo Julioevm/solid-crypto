@@ -1,5 +1,6 @@
 import { createStore } from "solid-js/store";
 import { SolidApexCharts } from "solid-apexcharts";
+import "./styles.css";
 
 type Timeline = Array<{ epoch: number; price: number }>;
 
@@ -45,9 +46,9 @@ const Chart = (props: { data: Timeline }) => {
   });
 
   return (
-    <div id="chart">
+    <div id="chart" class="chart">
       <SolidApexCharts
-        width="600"
+        width="100%"
         type="area"
         options={options}
         series={series.list}

@@ -1,6 +1,6 @@
 import { useParams } from "solid-app-router";
 import { createResource, Show } from "solid-js";
-import Chart from "./Chart";
+import Chart from "../../components/Chart/Chart";
 import "./styles.css";
 
 interface Currency {
