@@ -1,12 +1,14 @@
 button {
     border: none;
-    background-color: var(--lighter-dark);
+    background-color: var(--color-primary-light);
     cursor: pointer;
-    color: var(--light-font);
+    color: var(--color-text);
     border-radius: 5px;
-    box-shadow: 0px 3px 4px 0px #20232a;
+    box-shadow: 0px 3px 4px 0px var(--color-shadow);
     margin: 0.5rem;
     padding: 0.25rem;
+    font-weight: bold;
+    font-size: large;
   }
   
   .large_form {
@@ -19,9 +21,9 @@ button {
     padding: 0.25rem;
     border: none;
     border-radius: 5px;
-    box-shadow: inset 2px 2px 4px 2px #20232a;
+    box-shadow: inset 2px 2px 4px 2px var(--color-shadow);
     font-size: 1.1rem;
     font-weight: bold;
-    color: var(--light-font);
-    background-color: var(--lighter-dark);
+    color: var(--color-text);
+    background-color: var(--color-primary-light);
   }

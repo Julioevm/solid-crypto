@@ -2,12 +2,12 @@
   display: flex;
   align-items: center;
   height: 80px;
-  border-bottom: 1px solid var(--highlight);
-  padding: 0rem 2rem;
+  border-bottom: 1px solid var(--color-separator);
+  padding-left: 1rem;
 }
 
 .coin_row:hover {
-  background: #171718;
+  background: var(--color-background-dark);
 }
 
 .coin_data {
@@ -51,6 +51,9 @@
     display: none;
   }
 
+  .coin {
+    width: 8rem;
+  }
   .coin_data {
     display: flex;
     text-align: right;

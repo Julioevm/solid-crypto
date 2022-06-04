@@ -1,9 +1,16 @@
 :root {
-  --highlight: #504f4f;
-  --background-dark: #282c34;
-  --lighter-dark: #434a58;
-  --light-font: white;
-  --font-disabled: #b6b6b6;
+  /* Color variables -- defaults dark mode*/
+  --color-separator: 	hsl(0, 1%, 31%);
+  --color-background: hsl(220, 13%, 18%);
+  --color-background-dark: hsl(220, 20%, 15%);
+  --color-primary:hsl(221, 26%, 24%);
+  --color-primary-light: hsl(220, 14%, 30%);
+  --color-text: white;
+  --font-disabled: hsl(0, 0%, 71%);
+  --color-shadow: hsl(222, 14%, 15%);
+  --color-gray: gray;
+  --color-gold: gold;
+  color-scheme: dark
 }
 
 body {
@@ -15,7 +22,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+  /* Color variables */
+@media(prefers-color-scheme: light ){
+  :root {
+    --color-separator: 	hsl(0, 1%, 60%);
+    --color-background: hsl(220, 13%, 90%);
+    --color-background-dark:hsl(220, 13%, 80%);
+    --color-primary:hsl(221, 30%, 60%);
+    --color-primary-light: hsl(220, 14%, 70%);
+    --color-text: hsl(221, 30%, 15%);
+    --font-disabled: hsl(0, 0%, 50%);
+    --color-shadow: hsl(222, 14%, 55%);
+    --color-gray: hsl(0, 0%, 20%);
+    --color-gold: hsl(51, 100%, 31%);
+    color-scheme: light
+  }
 }

@@ -29,7 +29,7 @@ const AppBar = () => {
 
   const LoggedOut = () => {
     return (
-      <div class="app_bar_container">
+      <nav class="app_bar_container">
         <a
           class="pointer login_button"
           onClick={() => setState("form")}
@@ -47,7 +47,7 @@ const AppBar = () => {
         <Link href="/register" data-testid="register-button">
           Register
         </Link>
-      </div>
+      </nav>
     );
   };
 
