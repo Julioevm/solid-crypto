@@ -1,10 +1,12 @@
 import { createStore } from "solid-js/store";
 import { SolidApexCharts } from "solid-apexcharts";
 
-const Chart = () => {
+type Timeline = Array<{ epoch: number; price: number }>;
+
+const Chart = (props: { data: Timeline }) => {
   const [options] = createStore({
     theme: {
-      mode: "dark",
+      mode: "light",
       palette: "palette1",
     },
     chart: {
@@ -31,28 +33,18 @@ const Chart = () => {
         opacity: 0.5,
       },
     },
-    xaxis: {
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-      ],
-    },
   });
 
   const [series] = createStore({
     list: [
       {
         name: "series-1",
-        data: [30.0, 40.0, 35.0, 50.0, 49.0, 60.0, 70.2, 91.2],
+        data: props.data,
       },
     ],
+    xaxis: {
+      type: "datetime",
+    },
   });
 
   return (
