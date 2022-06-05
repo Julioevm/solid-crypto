@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 4rem;
+  width: 90%;
 }
 
 .coin_header {
@@ -14,7 +15,7 @@
 
 .coin_main_info {
   display: flex;
-  justify-content: space-evenly;
+  align-items: center;
   flex: 2;
 }
 

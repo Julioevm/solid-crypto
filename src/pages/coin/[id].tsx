@@ -1,6 +1,6 @@
 import { useParams } from "solid-app-router";
 import { createResource, Show } from "solid-js";
-import Chart from "../../components/Chart/Chart";
+import Chart, { TimeSeries } from "../../components/Chart/Chart";
 import "./styles.css";
 
 interface Currency {
@@ -20,7 +20,14 @@ interface CoinDetail {
 }
 
 interface CoinTimeline {
-  prices: Array<{ epoch: number; price: number }>;
+  prices: Array<[number, number]>;
+}
+
+function formatData(timeline: Array<[number, number]>): TimeSeries {
+  return timeline.map(([epoch, price]) => ({
+    x: new Date(epoch).toLocaleString("en-US"),
+    y: price.toFixed(2),
+  }));
 }
 
 const fetchData = async (id: string) =>
@@ -33,58 +40,59 @@ const fetchTimelineData = async (id: string) =>
     )
   ).json();
 
-  const Coin = () => {
-    const params = useParams();
-    const [coin] = createResource<CoinDetail>(() => fetchData(params.id));
-    const [timeline] = createResource<CoinTimeline>(() =>
-      fetchTimelineData(params.id)
-    );
-    const price_change = (coin: CoinDetail) =>
-      coin.market_data.price_change_percentage_24h ?? 0;
+const Coin = () => {
+  const params = useParams();
+  const [coin] = createResource<CoinDetail>(() => fetchData(params.id));
+  const [timeline] = createResource<CoinTimeline>(() =>
+    fetchTimelineData(params.id)
+  );
 
-    return (
-      <>
-        <Show when={coin()} fallback="Loading...">
-          {(coin) => (
-            <div class="coin_container">
-              <div class={"coin_header"}>
-                <div class="coin_main_info">
-                  <img
-                    src={coin.image.small}
-                    alt={coin.name}
-                    class={"coin_image"}
-                  />
-                  <h1 class={"coin_name"}>{coin.name}</h1>
-                  <p class={"coin_ticker"}>({coin.symbol})</p>
-                </div>
+  const price_change = (coin: CoinDetail) =>
+    coin.market_data.price_change_percentage_24h ?? 0;
 
-                <div class="coin_value">
-                  <div class={"coin_current"}>
-                    {coin.market_data.current_price.usd.toLocaleString()}$
-                  </div>
-                  <div
-                    classList={{
-                      green: price_change(coin) > 0,
-                      red: price_change(coin) < 0,
-                    }}
-                  >
-                    {price_change(coin).toFixed(2)}%
-                  </div>
-                </div>
+  return (
+    <>
+      <Show when={coin()} fallback="Loading...">
+        {(coin) => (
+          <div class="coin_container">
+            <div class={"coin_header"}>
+              <div class="coin_main_info">
+                <img
+                  src={coin.image.small}
+                  alt={coin.name}
+                  class={"coin_image"}
+                />
+                <h1 class={"coin_name"}>{coin.name}</h1>
+                <p class={"coin_ticker"}>({coin.symbol})</p>
               </div>
 
-              <div>
-                <span>Market Cap</span>{" "}
-                <span>{coin.market_data.market_cap.usd.toLocaleString()}$</span>
+              <div class="coin_value">
+                <div class={"coin_current"}>
+                  {coin.market_data.current_price.usd.toLocaleString()}$
+                </div>
+                <div
+                  classList={{
+                    green: price_change(coin) > 0,
+                    red: price_change(coin) < 0,
+                  }}
+                >
+                  {price_change(coin).toFixed(2)}%
+                </div>
               </div>
             </div>
-          )}
-        </Show>
-        <Show when={timeline()} fallback="Loading...">
-          {(timeline) => <Chart data={timeline.prices} />}
-        </Show>
-      </>
-    );
-  };
+
+            <div>
+              <span>Market Cap</span>{" "}
+              <span>{coin.market_data.market_cap.usd.toLocaleString()}$</span>
+            </div>
+          </div>
+        )}
+      </Show>
+      <Show when={timeline()} fallback="Loading...">
+        {(timeline) => <Chart data={formatData(timeline.prices)} />}
+      </Show>
+    </>
+  );
+};
 
 export default Coin;

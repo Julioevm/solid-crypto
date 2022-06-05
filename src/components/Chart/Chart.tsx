@@ -2,9 +2,9 @@ import { createStore } from "solid-js/store";
 import { SolidApexCharts } from "solid-apexcharts";
 import "./styles.css";
 
-type Timeline = Array<{ epoch: number; price: number }>;
+export type TimeSeries = Array<{ x: string; y: string }>;
 
-const Chart = (props: { data: Timeline }) => {
+const Chart = (props: { data: TimeSeries }) => {
   const [options] = createStore({
     theme: {
       mode: "light",
@@ -13,7 +13,7 @@ const Chart = (props: { data: Timeline }) => {
     chart: {
       height: 350,
       with: 600,
-      type: "line",
+      type: "area",
     },
     dataLabels: {
       enabled: false,
@@ -31,12 +31,20 @@ const Chart = (props: { data: Timeline }) => {
         opacity: 0.5,
       },
     },
+    yaxis: {
+      labels: {
+        formatter: function (value: string) {
+          return value + "$";
+        },
+      },
+    },
+
   });
 
   const [series] = createStore({
     list: [
       {
-        name: "series-1",
+        name: "Price",
         data: props.data,
       },
     ],
@@ -51,7 +59,7 @@ const Chart = (props: { data: Timeline }) => {
         width="100%"
         type="area"
         options={options}
-        series={series.list}
+        series={series.list as any}
       />
     </div>
   );
