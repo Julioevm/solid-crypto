@@ -10,6 +10,8 @@
   --color-shadow: hsl(222, 14%, 15%);
   --color-gray: gray;
   --color-gold: gold;
+  --color-gradient-start: hsl(207, 73%, 34%) 0%;
+  --color-gradient-end: hsl(212, 100%, 70%) 90%;
   color-scheme: dark
 }
 
@@ -45,6 +47,8 @@ code {
     --color-shadow: hsl(222, 14%, 55%);
     --color-gray: hsl(0, 0%, 20%);
     --color-gold: hsl(51, 100%, 31%);
+    --color-gradient-start: hsl(207, 100%, 26%) 0%;
+      --color-gradient-end: hsl(214, 39%, 49%) 90%;
     color-scheme: light
   }
 }

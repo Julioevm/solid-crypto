@@ -10,9 +10,16 @@
 
 h1 {
   margin: 64px;
+  font-size: 3em;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.5em;
+  }
 }

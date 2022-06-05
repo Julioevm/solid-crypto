@@ -4,6 +4,7 @@ import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { Coin } from "../../components/CoinLine/CoinLine";
 import { favList } from "../../App";
 import Slider from "../../components/Slider/Slider";
+import "./styles.css";
 
 const marketUrl =
   "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false";
@@ -36,7 +37,7 @@ const Home = () => {
   return (
     <>
       <header>
-        <h1>Solid Crypto</h1>
+        <h1 class="gradientText">Solid Crypto</h1>
       </header>
 
       <SearchBar handleChange={handleChange} />
