@@ -26,6 +26,8 @@
   },
   "dependencies": {
     "@solid-primitives/storage": "^1.1.1",
+    "apexcharts": "^3.33.2",
+    "solid-apexcharts": "^0.1.3",
     "firebase": "^9.6.10",
     "solid-app-router": "^0.2.1",
     "solid-js": "^1.3.14"
